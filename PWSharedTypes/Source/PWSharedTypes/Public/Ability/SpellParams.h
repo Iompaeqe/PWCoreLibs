@@ -15,7 +15,7 @@ namespace PWParamKeys
 	static const FName Radius = "Radius";
 }
 
-UENUM(BlueprintType, meta=(Bitflags))
+UENUM(BlueprintType, meta=(Bitflags, UseEnumValuesAsMaskValuesInEditor="true"))
 enum class ERelationMask : uint8
 {
 	None = 0 UMETA(Hidden),
