@@ -61,6 +61,8 @@ public:
 	int32 TargetCollisionMask = (int32)ERelationMask::All;
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly)
 	int32 TargetEffectMask = (int32)ERelationMask::All;
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Replicated)
+	FGuid CastId;
 	
 	/**
 	 * Modules that need to add **primitive data** to SpellParams can use this container.  

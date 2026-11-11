@@ -14,6 +14,7 @@ void USpellParams::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLife
 	DOREPLIFETIME_CONDITION(USpellParams, SourcePlayerUniqueId, COND_InitialOnly);
 	DOREPLIFETIME_CONDITION(USpellParams, TargetCollisionMask, COND_InitialOnly);
 	DOREPLIFETIME_CONDITION(USpellParams, AbilityLevel, COND_InitialOnly);
+	DOREPLIFETIME_CONDITION(USpellParams, CastId, COND_InitialOnly);
 }
 
 USpellParamsExtension* USpellParams::GetExtensionByClass(TSubclassOf<USpellParamsExtension> ExtensionClass) const
