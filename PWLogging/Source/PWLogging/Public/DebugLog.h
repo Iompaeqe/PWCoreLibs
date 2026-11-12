@@ -31,9 +31,6 @@ enum class ELogCategory : uint8
 	LogEnvironment UMETA(DisplayName = "Environment")
 };
 
-/**
- * 
- */
 UCLASS()
 class PWLOGGING_API UDebugLog : public UBlueprintFunctionLibrary
 {
@@ -202,25 +199,25 @@ public:
 			switch (LogCategory)
 			{
 			case ELogCategory::LogNetwork:
-				UE_LOG(LogNetwork, Log, TEXT("%s"), *OutputString);
+				UE_LOG(LogPWNetwork, Log, TEXT("%s"), *OutputString);
 				break;
 			case ELogCategory::LogSpell:
-				UE_LOG(LogSpell, Log, TEXT("%s"), *OutputString);
+				UE_LOG(LogPWSpell, Log, TEXT("%s"), *OutputString);
 				break;
 			case ELogCategory::LogCharacter:
-				UE_LOG(LogCharacter, Log, TEXT("%s"), *OutputString);
+				UE_LOG(LogPWCharacter, Log, TEXT("%s"), *OutputString);
 				break;
 			case ELogCategory::LogPlayer:
-				UE_LOG(LogPlayer, Log, TEXT("%s"), *OutputString);
+				UE_LOG(LogPWPlayer, Log, TEXT("%s"), *OutputString);
 				break;
 			case ELogCategory::LogInventory:
-				UE_LOG(LogInventory, Log, TEXT("%s"), *OutputString);
+				UE_LOG(LogPWInventory, Log, TEXT("%s"), *OutputString);
 				break;
 			case ELogCategory::LogCombat:
-				UE_LOG(LogCombat, Log, TEXT("%s"), *OutputString);
+				UE_LOG(LogPWCombat, Log, TEXT("%s"), *OutputString);
 				break;
 			case ELogCategory::LogEnvironment:
-				UE_LOG(LogEnvironment, Log, TEXT("%s"), *OutputString);
+				UE_LOG(LogPWEnvironment, Log, TEXT("%s"), *OutputString);
 				break;
 			default:
 				UE_LOG(LogTemp, Log, TEXT("%s"), *OutputString);
