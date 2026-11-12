@@ -1,3 +1,5 @@
+// Copyright (c) 2025 Metehan Goksel Kurtulan (Iompaeqe)
+
 #pragma once
 
 #include "TimerManager.h"
