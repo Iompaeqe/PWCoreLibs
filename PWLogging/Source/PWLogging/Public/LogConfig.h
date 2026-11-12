@@ -6,9 +6,6 @@
 #include "UObject/Object.h"
 #include "LogConfig.generated.h"
 
-/**
- * 
- */
 UCLASS(Config=Game, Blueprintable, DefaultConfig)
 class PWLOGGING_API ULogConfig : public UObject
 {

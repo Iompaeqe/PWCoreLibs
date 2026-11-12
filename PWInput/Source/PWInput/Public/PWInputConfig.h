@@ -8,9 +8,6 @@
 #include "PWInputConfig.generated.h"
 
 class UInputMappingContext;
-/**
- * 
- */
 UCLASS()
 class PWINPUT_API UPWInputConfig : public UDataAsset
 {

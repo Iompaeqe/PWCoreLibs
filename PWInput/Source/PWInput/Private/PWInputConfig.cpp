@@ -3,6 +3,8 @@
 
 #include "PWInputConfig.h"
 
+DEFINE_LOG_CATEGORY_STATIC(LogPWInput, Log, All);
+
 const class UInputAction* UPWInputConfig::FindAbilityInputActionForTag(const FGameplayTag& InputTag, bool bLogNotFound)
 {
 	if (AbilityInputActions.Contains(InputTag))
@@ -12,7 +14,7 @@ const class UInputAction* UPWInputConfig::FindAbilityInputActionForTag(const FGa
 
 	if (bLogNotFound)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Can't find InputAction for InputTag [%s] on InputConfig [%s]."), *InputTag.ToString(), *GetNameSafe(this));
+		UE_LOG(LogPWInput, Error, TEXT("Can't find InputAction for InputTag [%s] on InputConfig [%s]."), *InputTag.ToString(), *GetNameSafe(this));
 	}
 	
 	return nullptr;

@@ -2,6 +2,8 @@
 
 #include "Timer/WTM.h"
 
+DEFINE_LOG_CATEGORY_STATIC(LogPWTimer, Log, All);
+
 
 TMap<FString, WTM::TimerHandle> WTM::Timers = TMap<FString, WTM::TimerHandle>();
 FCriticalSection WTM::TimerCriticalSection;
@@ -146,12 +148,12 @@ void WTM::Cancel(const FString& UniqueName, bool bLog)
 		}
 		Timers.Remove(UniqueName);
 		if (bLog)
-			UE_LOG(LogTemp, Log, TEXT("Timer canceled: %s"), *UniqueName);
+			UE_LOG(LogPWTimer, Log, TEXT("Timer canceled: %s"), *UniqueName);
 	}
 	else
 	{
 		if (bLog)
-			UE_LOG(LogTemp, Warning, TEXT("Timer not found for cancel: %s"), *UniqueName);
+			UE_LOG(LogPWTimer, Warning, TEXT("Timer not found for cancel: %s"), *UniqueName);
 	}
 }
 
@@ -160,7 +162,7 @@ void WTM::CancelEverything()
 	//logfunc();
 	if (!GWorld)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("GWorld is null. Cannot cancel all timers."));
+		UE_LOG(LogPWTimer, Warning, TEXT("GWorld is null. Cannot cancel all timers."));
 		return;
 	}
 
@@ -172,5 +174,5 @@ void WTM::CancelEverything()
 			GWorld->GetTimerManager().ClearTimer(Handle);
 	}
 	Timers.Empty();
-	UE_LOG(LogTemp, Log, TEXT("All timers have been canceled."));
+	UE_LOG(LogPWTimer, Log, TEXT("All timers have been canceled."));
 }

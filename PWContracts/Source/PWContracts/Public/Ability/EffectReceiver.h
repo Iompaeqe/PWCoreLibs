@@ -13,9 +13,6 @@ class UEffectReceiver : public UInterface
 	GENERATED_BODY()
 };
 
-/**
- * 
- */
 class PWCONTRACTS_API IEffectReceiver
 {
 	GENERATED_BODY()
