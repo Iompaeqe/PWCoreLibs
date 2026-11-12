@@ -30,14 +30,12 @@ public class PWLogging : ModuleRules
 				"Engine",
 				"Json",
 				"JsonUtilities", 
-				"AdvancedSessions", 
-				"OnlineSubsystem",
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
 		
-		PublicDefinitions.Add("PW_WITH_ADVANCED_SESSIONS=1");
-		PublicDefinitions.Add("PW_WITH_OSS=1");
+		PublicDefinitions.Add("PW_WITH_ADVANCED_SESSIONS=0");
+		PublicDefinitions.Add("PW_WITH_OSS=0");
 		
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
