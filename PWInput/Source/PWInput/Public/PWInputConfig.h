@@ -17,8 +17,10 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	const class UInputAction* FindAbilityInputActionForTag(const FGameplayTag& InputTag, bool bLogNotFound);
 		
+	// Mapping contexts added for the local player.
 	UPROPERTY(EditDefaultsOnly)
 	TArray<TObjectPtr<UInputMappingContext>> InputMappingContexts;
+	// Input action behind each input tag; abilities bind to the tag.
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TMap<FGameplayTag, TObjectPtr<UInputAction>> AbilityInputActions;
 };

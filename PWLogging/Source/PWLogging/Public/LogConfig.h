@@ -19,12 +19,15 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Debug")
 	static ULogConfig* GetLogConfig();
 	
+	// Enables the function-name logging macros.
 	UPROPERTY(EditAnywhere, Config, BlueprintReadOnly, Category = "Debug Settings")
 	bool bDebugFunc = true;
 
+	// Enables economy logging.
 	UPROPERTY(EditAnywhere, Config, BlueprintReadOnly, Category = "Debug Settings")
 	bool bDebugEconomy = true;
 
+	// Enables the extra-detail logging macros.
 	UPROPERTY(EditAnywhere, Config, BlueprintReadOnly, Category = "Debug Settings")
 	bool bDebugExtraDetails = true;
 	

@@ -19,6 +19,7 @@ class PWINPUT_API UPWInputRouter : public UActorComponent
 	GENERATED_BODY()
 
 public:
+	// Input config whose actions are bound and rebroadcast as input tags.
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	UPWInputConfig* InputConfig = nullptr;
 
