@@ -19,4 +19,9 @@ class PWCONTRACTS_API IAffectable
 public:
 	UFUNCTION(BlueprintNativeEvent, Category="Hit")
 	bool ApplyEffects(class USpellParams* SpellParams);
+
+	// Ends effects a caster applied earlier. Only receivers that track effects themselves need it.
+	UFUNCTION(BlueprintNativeEvent, Category="Hit")
+	void RemoveEffects(class USpellParams* SpellParams, bool bInfiniteOnly);
+	virtual void RemoveEffects_Implementation(class USpellParams* SpellParams, bool bInfiniteOnly) {}
 };
