@@ -3,11 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "MultiDataArray.h"
+#include "PWMultiDataArray.h"
 #include "UObject/Object.h"
-#include "SpellParams.generated.h"
+#include "PWSpellParams.generated.h"
 
-class UEffectSpellParamsExtension;
+class UPWEffectSpellParams;
 
 namespace PWParamKeys
 {
@@ -31,18 +31,18 @@ ENUM_CLASS_FLAGS(ERelationMask)
 
 
 UCLASS(Abstract, BlueprintType, EditInlineNew)
-class PWSHAREDTYPES_API USpellParamsExtension : public UObject
+class PWSHAREDTYPES_API UPWSpellParamsExtension : public UObject
 {
 	GENERATED_BODY()
 };
 
 /**
- * Data carrier object intended to be given to the actors spawn by GA. The data inside can be replicated if the abilities depends it. And the data can be extended via USpellParamsExtension child classes.
+ * Data carrier object intended to be given to the actors spawn by GA. The data inside can be replicated if the abilities depends it. And the data can be extended via UPWSpellParamsExtension child classes.
  * As is, spellparams and it's required extensions are created for each spell cast, which can be problematic if the game has too many spells being created at the same time.
  * in which case, consider extending the system to pool the spellparams' and it's extensions.
  */
 UCLASS(BlueprintType, Blueprintable)
-class PWSHAREDTYPES_API USpellParams : public UObject
+class PWSHAREDTYPES_API UPWSpellParams : public UObject
 {
 	GENERATED_BODY()
 
@@ -73,20 +73,20 @@ public:
 	 * For complex or structured data, see `Extensions`.
 	 */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Extra")
-	TObjectPtr<UMultiDataArray> More = nullptr;
+	TObjectPtr<UPWMultiDataArray> More = nullptr;
 	
 	/**
 	 * Modules that need to add **complex or structured data** to SpellParams  
-	 * should extend `USpellParamsExtension` and use this list to store it.  
+	 * should extend `UPWSpellParamsExtension` and use this list to store it.  
 	 * For simple or primitive data, see `More`.
 	 */
 	UPROPERTY(Instanced, EditAnywhere, BlueprintReadWrite, Category="Extra")
-	TArray<TObjectPtr<USpellParamsExtension>> Extensions;
+	TArray<TObjectPtr<UPWSpellParamsExtension>> Extensions;
 
 	template <typename T>
 	T* FindExtension() const
 	{
-		for (const TObjectPtr<USpellParamsExtension>& Ext : Extensions)
+		for (const TObjectPtr<UPWSpellParamsExtension>& Ext : Extensions)
 			if (T* AsType = Cast<T>(Ext))
 				return AsType;
 		return nullptr;
@@ -107,5 +107,5 @@ public:
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 	
 	UFUNCTION(BlueprintPure, BlueprintPure, Category="Accessors")
-	USpellParamsExtension* GetExtensionByClass(TSubclassOf<USpellParamsExtension> ExtensionClass) const;
+	UPWSpellParamsExtension* GetExtensionByClass(TSubclassOf<UPWSpellParamsExtension> ExtensionClass) const;
 };

@@ -7,7 +7,7 @@
 #include "PWSpellParamsInterface.generated.h"
 
 
-class USpellParams;
+class UPWSpellParams;
 
 UINTERFACE(BlueprintType, Blueprintable)
 class UPWSpellParamsInterface : public UInterface
@@ -21,5 +21,5 @@ class PWCONTRACTS_API IPWSpellParamsInterface
 
 public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category="Spell")
-	void SetSpellParams(USpellParams* Params);
+	void SetSpellParams(UPWSpellParams* Params);
 };

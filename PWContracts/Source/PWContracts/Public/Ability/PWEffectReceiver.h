@@ -4,16 +4,16 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Interface.h"
-#include "EffectReceiver.generated.h"
+#include "PWEffectReceiver.generated.h"
 
 // This class does not need to be modified.
 UINTERFACE()
-class UEffectReceiver : public UInterface
+class UPWEffectReceiver : public UInterface
 {
 	GENERATED_BODY()
 };
 
-class PWCONTRACTS_API IEffectReceiver
+class PWCONTRACTS_API IPWEffectReceiver
 {
 	GENERATED_BODY()
 

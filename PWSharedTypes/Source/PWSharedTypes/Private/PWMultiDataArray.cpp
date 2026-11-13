@@ -1,9 +1,9 @@
 // Copyright (c) 2025 Metehan Goksel Kurtulan (Iompaeqe)
 
 
-#include "MultiDataArray.h"
+#include "PWMultiDataArray.h"
 
-UMultiDataArray::UMultiDataArray()
+UPWMultiDataArray::UPWMultiDataArray()
 {
 	Data.Empty();
 }

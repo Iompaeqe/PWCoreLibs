@@ -4,10 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
-#include "MultiDataArray.generated.h"
+#include "PWMultiDataArray.generated.h"
 
 USTRUCT(BlueprintType)
-struct PWSHAREDTYPES_API FMultiDataValue
+struct PWSHAREDTYPES_API FPWMultiDataValue
 {
 	GENERATED_BODY()
 
@@ -26,26 +26,26 @@ struct PWSHAREDTYPES_API FMultiDataValue
 	UPROPERTY()
 	bool BoolValue;
 
-	FMultiDataValue(): FloatValue(0), VectorValue(FVector::ZeroVector), IntValue(0), BoolValue(false)
+	FPWMultiDataValue(): FloatValue(0), VectorValue(FVector::ZeroVector), IntValue(0), BoolValue(false)
 	{
 	}
 };
 
 UCLASS(BlueprintType, Blueprintable)
-class PWSHAREDTYPES_API UMultiDataArray : public UObject
+class PWSHAREDTYPES_API UPWMultiDataArray : public UObject
 {
 	GENERATED_BODY()
 
 public:
-	UMultiDataArray();
+	UPWMultiDataArray();
 	
 	UPROPERTY(BlueprintReadWrite)
-	TMap<FString, FMultiDataValue> Data;
+	TMap<FString, FPWMultiDataValue> Data;
 
 	UFUNCTION(BlueprintCallable)
 	void AddString(const FString& Key, const FString& Value)
 	{
-		FMultiDataValue DataValue;
+		FPWMultiDataValue DataValue;
 		DataValue.StringValue = Value;
 		Data.Add(Key, DataValue);
 	}
@@ -53,7 +53,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void AddFloat(const FString& Key, float Value)
 	{
-		FMultiDataValue DataValue;
+		FPWMultiDataValue DataValue;
 		DataValue.FloatValue = Value;
 		Data.Add(Key, DataValue);
 	}
@@ -61,7 +61,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void AddVector(const FString& Key, const FVector& Value)
 	{
-		FMultiDataValue DataValue;
+		FPWMultiDataValue DataValue;
 		DataValue.VectorValue = Value;
 		Data.Add(Key, DataValue);
 	}
@@ -69,7 +69,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void AddInt(const FString& Key, int32 Value)
 	{
-		FMultiDataValue DataValue;
+		FPWMultiDataValue DataValue;
 		DataValue.IntValue = Value;
 		Data.Add(Key, DataValue);
 	}
@@ -77,7 +77,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void AddBool(const FString& Key, bool Value)
 	{
-		FMultiDataValue DataValue;
+		FPWMultiDataValue DataValue;
 		DataValue.BoolValue = Value;
 		Data.Add(Key, DataValue);
 	}

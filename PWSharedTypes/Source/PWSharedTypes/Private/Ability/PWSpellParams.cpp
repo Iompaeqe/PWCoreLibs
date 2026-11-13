@@ -1,25 +1,25 @@
 ﻿// Copyright (c) 2025 Metehan Goksel Kurtulan (Iompaeqe)
 
 
-#include "Ability/SpellParams.h"
+#include "Ability/PWSpellParams.h"
 
 #include "GameFramework/GameState.h"
 #include "Net/UnrealNetwork.h"
 
 
-void USpellParams::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+void UPWSpellParams::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	UObject::GetLifetimeReplicatedProps(OutLifetimeProps);
 
-	DOREPLIFETIME_CONDITION(USpellParams, SourcePlayerUniqueId, COND_InitialOnly);
-	DOREPLIFETIME_CONDITION(USpellParams, TargetCollisionMask, COND_InitialOnly);
-	DOREPLIFETIME_CONDITION(USpellParams, AbilityLevel, COND_InitialOnly);
-	DOREPLIFETIME_CONDITION(USpellParams, CastId, COND_InitialOnly);
+	DOREPLIFETIME_CONDITION(UPWSpellParams, SourcePlayerUniqueId, COND_InitialOnly);
+	DOREPLIFETIME_CONDITION(UPWSpellParams, TargetCollisionMask, COND_InitialOnly);
+	DOREPLIFETIME_CONDITION(UPWSpellParams, AbilityLevel, COND_InitialOnly);
+	DOREPLIFETIME_CONDITION(UPWSpellParams, CastId, COND_InitialOnly);
 }
 
-USpellParamsExtension* USpellParams::GetExtensionByClass(TSubclassOf<USpellParamsExtension> ExtensionClass) const
+UPWSpellParamsExtension* UPWSpellParams::GetExtensionByClass(TSubclassOf<UPWSpellParamsExtension> ExtensionClass) const
 {
-	for (const TObjectPtr<USpellParamsExtension>& Ext : Extensions)
+	for (const TObjectPtr<UPWSpellParamsExtension>& Ext : Extensions)
 	{
 		if (Ext && Ext->IsA(ExtensionClass))
 			return Ext;
@@ -27,7 +27,7 @@ USpellParamsExtension* USpellParams::GetExtensionByClass(TSubclassOf<USpellParam
 	return nullptr;
 }
 
-void USpellParams::OnRep_UniqueId()
+void UPWSpellParams::OnRep_UniqueId()
 {
 	const UObject* Outer = GetOuter();
 	const UWorld* World = Outer->GetWorld();

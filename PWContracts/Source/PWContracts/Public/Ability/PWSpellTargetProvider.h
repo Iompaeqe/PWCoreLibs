@@ -6,7 +6,7 @@
 #include "UObject/Interface.h"
 #include "PWSpellTargetProvider.generated.h"
 
-class USpellParams;
+class UPWSpellParams;
 
 UINTERFACE(meta=(CannotImplementInterfaceInBlueprint))
 class UPWSpellTargetProvider : public UInterface
@@ -21,5 +21,5 @@ class PWCONTRACTS_API IPWSpellTargetProvider
 
 public:
 	// The impact is where SpellActor is now; Hit carries what it touched, if anything.
-	virtual void GetImpactTargets(const AActor* SpellActor, const USpellParams* Params, const FHitResult& Hit, TArray<AActor*>& OutTargets) const = 0;
+	virtual void GetImpactTargets(const AActor* SpellActor, const UPWSpellParams* Params, const FHitResult& Hit, TArray<AActor*>& OutTargets) const = 0;
 };
