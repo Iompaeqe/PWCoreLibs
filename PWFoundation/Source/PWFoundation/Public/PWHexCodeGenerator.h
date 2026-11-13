@@ -6,10 +6,10 @@
 #include <sstream>
 #include <iomanip>
 
-class HexCodeGenerator
+class FPWHexCodeGenerator
 {
 public:
-	HexCodeGenerator()
+	FPWHexCodeGenerator()
 		: counter(0)
 	{
 		std::random_device rd;

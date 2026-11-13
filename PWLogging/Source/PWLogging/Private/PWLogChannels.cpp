@@ -1,7 +1,7 @@
 // Copyright (c) 2025 Metehan Goksel Kurtulan (Iompaeqe)
 
 
-#include "LogChannels.h"
+#include "PWLogChannels.h"
 
 DEFINE_LOG_CATEGORY(LogProjectW);
 DEFINE_LOG_CATEGORY(LogWFunc);

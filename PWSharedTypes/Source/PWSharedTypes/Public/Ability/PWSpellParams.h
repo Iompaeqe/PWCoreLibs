@@ -16,7 +16,7 @@ namespace PWParamKeys
 }
 
 UENUM(BlueprintType, meta=(Bitflags, UseEnumValuesAsMaskValuesInEditor="true"))
-enum class ERelationMask : uint8
+enum class EPWRelationMask : uint8
 {
 	None = 0 UMETA(Hidden),
 	Self = 1 << 0,
@@ -26,7 +26,7 @@ enum class ERelationMask : uint8
 	All = Self | Ally | Enemy | Neutral UMETA(Hidden)
 };
 
-ENUM_CLASS_FLAGS(ERelationMask)
+ENUM_CLASS_FLAGS(EPWRelationMask)
 
 
 
@@ -58,9 +58,9 @@ public:
 
 
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Replicated)
-	int32 TargetCollisionMask = (int32)ERelationMask::All;
+	int32 TargetCollisionMask = (int32)EPWRelationMask::All;
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly)
-	int32 TargetEffectMask = (int32)ERelationMask::All;
+	int32 TargetEffectMask = (int32)EPWRelationMask::All;
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Replicated)
 	FGuid CastId;
 

@@ -13,13 +13,13 @@
 
 #include "CoreMinimal.h"
 #include "JsonObjectConverter.h"
-#include "LogChannels.h"
+#include "PWLogChannels.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
-#include "DebugLog.generated.h"
+#include "PWDebugLog.generated.h"
 
 
 UENUM(BlueprintType)
-enum class ELogCategory : uint8
+enum class EPWLogCategory : uint8
 {
 	LogTemp UMETA(DisplayName = "Temp"),
 	LogNetwork UMETA(DisplayName = "Network"),
@@ -32,13 +32,13 @@ enum class ELogCategory : uint8
 };
 
 UCLASS()
-class PWLOGGING_API UDebugLog : public UBlueprintFunctionLibrary
+class PWLOGGING_API UPWDebugLog : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 
 public:
 	UFUNCTION(BlueprintCallable, CustomThunk, Category = "Debug", meta = (CustomStructureParam = "Property", AdvancedDisplay = "Prefix, Suffix, LogCategory, Tags", AutoCreateRefTerm="Tags"))
-	static void LogAsJson(const int32& Property, UObject* WorldContext, const FString& Prefix, const FString& Suffix, ELogCategory LogCategory, const TArray<FString>& Tags);
+	static void LogAsJson(const int32& Property, UObject* WorldContext, const FString& Prefix, const FString& Suffix, EPWLogCategory LogCategory, const TArray<FString>& Tags);
 
 	DECLARE_FUNCTION(execLogAsJson)
 	{
@@ -49,7 +49,7 @@ public:
 		P_GET_OBJECT(UObject, WorldContext);
 		P_GET_PROPERTY(FStrProperty, Prefix);
 		P_GET_PROPERTY(FStrProperty, Suffix);
-		P_GET_ENUM(ELogCategory, LogCategory);
+		P_GET_ENUM(EPWLogCategory, LogCategory);
 		P_GET_TARRAY(FString, Tags);
 
 		P_FINISH;
@@ -198,25 +198,25 @@ public:
 		
 			switch (LogCategory)
 			{
-			case ELogCategory::LogNetwork:
+			case EPWLogCategory::LogNetwork:
 				UE_LOG(LogPWNetwork, Log, TEXT("%s"), *OutputString);
 				break;
-			case ELogCategory::LogSpell:
+			case EPWLogCategory::LogSpell:
 				UE_LOG(LogPWSpell, Log, TEXT("%s"), *OutputString);
 				break;
-			case ELogCategory::LogCharacter:
+			case EPWLogCategory::LogCharacter:
 				UE_LOG(LogPWCharacter, Log, TEXT("%s"), *OutputString);
 				break;
-			case ELogCategory::LogPlayer:
+			case EPWLogCategory::LogPlayer:
 				UE_LOG(LogPWPlayer, Log, TEXT("%s"), *OutputString);
 				break;
-			case ELogCategory::LogInventory:
+			case EPWLogCategory::LogInventory:
 				UE_LOG(LogPWInventory, Log, TEXT("%s"), *OutputString);
 				break;
-			case ELogCategory::LogCombat:
+			case EPWLogCategory::LogCombat:
 				UE_LOG(LogPWCombat, Log, TEXT("%s"), *OutputString);
 				break;
-			case ELogCategory::LogEnvironment:
+			case EPWLogCategory::LogEnvironment:
 				UE_LOG(LogPWEnvironment, Log, TEXT("%s"), *OutputString);
 				break;
 			default:

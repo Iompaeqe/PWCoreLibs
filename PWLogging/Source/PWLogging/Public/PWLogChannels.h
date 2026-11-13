@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
-#include "LogChannels.generated.h"
+#include "PWLogChannels.generated.h"
 
 DECLARE_LOG_CATEGORY_EXTERN(LogProjectW, Log, All);
 DECLARE_LOG_CATEGORY_EXTERN(LogWFunc, Log, All);
@@ -18,7 +18,7 @@ DECLARE_LOG_CATEGORY_EXTERN(LogPWCombat, Log, All);
 DECLARE_LOG_CATEGORY_EXTERN(LogPWEnvironment, Log, All);
 
 UCLASS()
-class PWLOGGING_API ULogChannels : public UObject
+class PWLOGGING_API UPWLogChannels : public UObject
 {
 	GENERATED_BODY()
 };

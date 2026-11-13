@@ -1,23 +1,23 @@
 // Copyright (c) 2025 Metehan Goksel Kurtulan (Iompaeqe)
 
-#include "Timer/WTM.h"
+#include "Timer/PWTimers.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogPWTimer, Log, All);
 
 
-TMap<FString, WTM::TimerHandle> WTM::Timers = TMap<FString, WTM::TimerHandle>();
-FCriticalSection WTM::TimerCriticalSection;
+TMap<FString, FPWTimers::TimerHandle> FPWTimers::Timers = TMap<FString, FPWTimers::TimerHandle>();
+FCriticalSection FPWTimers::TimerCriticalSection;
 
-WTM::WTM()
+FPWTimers::FPWTimers()
 {
 }
 
-WTM::~WTM()
+FPWTimers::~FPWTimers()
 {
 	CancelEverything();
 }
 
-void WTM::WaitAfterFrame(std::function<void()> Callback)
+void FPWTimers::WaitAfterFrame(std::function<void()> Callback)
 {
 	if (!GWorld)
 	{
@@ -30,7 +30,7 @@ void WTM::WaitAfterFrame(std::function<void()> Callback)
 	});
 }
 
-void WTM::WaitUntil(std::function<bool()> Condition, std::function<void()> Callback)
+void FPWTimers::WaitUntil(std::function<bool()> Condition, std::function<void()> Callback)
 {
 	if (!GWorld)
 	{
@@ -45,13 +45,13 @@ void WTM::WaitUntil(std::function<bool()> Condition, std::function<void()> Callb
 		}
 		else
 		{
-			WTM::WaitUntil(Condition, Callback);
+			FPWTimers::WaitUntil(Condition, Callback);
 		}
 	});
 
 }
 
-void WTM::WaitForSeconds(float Seconds, std::function<void()> Callback)
+void FPWTimers::WaitForSeconds(float Seconds, std::function<void()> Callback)
 {
 	if (!GWorld || Seconds <= 0.0f)
 	{
@@ -65,7 +65,7 @@ void WTM::WaitForSeconds(float Seconds, std::function<void()> Callback)
 	GWorld->GetTimerManager().SetTimer(TimerHandle, TimerDel, Seconds, false);
 }
 
-void WTM::Delay(const FString& UniqueName, const float Time, std::function<void()> Callback)
+void FPWTimers::Delay(const FString& UniqueName, const float Time, std::function<void()> Callback)
 {
 	//logfuncmsgf("UniqueName: %s", *UniqueName);
 	if (!GWorld)
@@ -85,7 +85,7 @@ void WTM::Delay(const FString& UniqueName, const float Time, std::function<void(
 		if (GWorld)
 			AsyncTask(ENamedThreads::GameThread, [UniqueName]()
 			{
-				WTM::Cancel(UniqueName); // Always cancel from the main thread
+				FPWTimers::Cancel(UniqueName); // Always cancel from the main thread
 			});
 	});
 
@@ -97,7 +97,7 @@ void WTM::Delay(const FString& UniqueName, const float Time, std::function<void(
 	}
 }
 
-void WTM::DelayRepeat(const FString& UniqueName, const float Time, std::function<bool()> Callback)
+void FPWTimers::DelayRepeat(const FString& UniqueName, const float Time, std::function<bool()> Callback)
 {
 	//logfuncmsgf("UniqueName: %s", *UniqueName);
 	if (!GWorld)
@@ -117,10 +117,10 @@ void WTM::DelayRepeat(const FString& UniqueName, const float Time, std::function
 			if (GWorld)
 				AsyncTask(ENamedThreads::GameThread, [UniqueName]()
 				{
-					WTM::Cancel(UniqueName); // Always cancel from the main thread
+					FPWTimers::Cancel(UniqueName); // Always cancel from the main thread
 				});
 		}
-		else if (GWorld && WTM::Timers.Contains(UniqueName))
+		else if (GWorld && FPWTimers::Timers.Contains(UniqueName))
 		{
 			GWorld->GetTimerManager().SetTimer(Timers[UniqueName].UEHandle, Timers[UniqueName].Callback, Time, false);
 		}
@@ -132,7 +132,7 @@ void WTM::DelayRepeat(const FString& UniqueName, const float Time, std::function
 	}
 }
 
-void WTM::Cancel(const FString& UniqueName, bool bLog)
+void FPWTimers::Cancel(const FString& UniqueName, bool bLog)
 {
 	//logfuncmsgf("UniqueName: %s", *UniqueName);
 	if (!GWorld)
@@ -157,7 +157,7 @@ void WTM::Cancel(const FString& UniqueName, bool bLog)
 	}
 }
 
-void WTM::CancelEverything()
+void FPWTimers::CancelEverything()
 {
 	//logfunc();
 	if (!GWorld)

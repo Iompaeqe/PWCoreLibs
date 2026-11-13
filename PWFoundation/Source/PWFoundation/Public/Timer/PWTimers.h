@@ -6,7 +6,7 @@
 #include "TimerManager.h"
 #include <functional>
 
-class PWFOUNDATION_API WTM
+class PWFOUNDATION_API FPWTimers
 {
 public:
     struct TimerHandle
@@ -15,8 +15,8 @@ public:
         std::function<void()> Callback;
     };
 
-    WTM();
-    ~WTM();
+    FPWTimers();
+    ~FPWTimers();
     
     static void WaitAfterFrame(std::function<void()> Callback);
     static void WaitUntil(std::function<bool()> Condition, std::function<void()> Callback);

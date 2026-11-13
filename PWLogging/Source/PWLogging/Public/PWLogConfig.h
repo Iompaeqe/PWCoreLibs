@@ -4,20 +4,20 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
-#include "LogConfig.generated.h"
+#include "PWLogConfig.generated.h"
 
 UCLASS(Config=Game, Blueprintable, DefaultConfig)
-class PWLOGGING_API ULogConfig : public UObject
+class PWLOGGING_API UPWLogConfig : public UObject
 {
 	GENERATED_BODY()
 public:
-	ULogConfig()
+	UPWLogConfig()
 	{
 		LoadConfig();
 	}
 	
 	UFUNCTION(BlueprintCallable, Category = "Debug")
-	static ULogConfig* GetLogConfig();
+	static UPWLogConfig* GetLogConfig();
 	
 	// Enables the function-name logging macros.
 	UPROPERTY(EditAnywhere, Config, BlueprintReadOnly, Category = "Debug Settings")

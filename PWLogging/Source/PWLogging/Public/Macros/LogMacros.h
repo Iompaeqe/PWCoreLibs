@@ -2,13 +2,13 @@
 
 #pragma once
 
-#include "LogConfig.h"
-#include "LogChannels.h"
+#include "PWLogConfig.h"
+#include "PWLogChannels.h"
 
 #define playername() *UGameplayStatics::GetPlayerController(this, 0)->GetPlayerState<APlayerState>()->GetPlayerName()
 
-#define checkenabled() if(ULogConfig::GetLogConfig()->bDebugFunc)
-#define checkifdetailed() if(ULogConfig::GetLogConfig()->bDebugExtraDetails)
+#define checkenabled() if(UPWLogConfig::GetLogConfig()->bDebugFunc)
+#define checkifdetailed() if(UPWLogConfig::GetLogConfig()->bDebugExtraDetails)
 
 #define log(Text) if(GEngine) GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::White, TEXT(Text), false)
 #define consolelog(Text, ...) UE_LOG(LogTemp, Log, TEXT(Text), ##__VA_ARGS__)
