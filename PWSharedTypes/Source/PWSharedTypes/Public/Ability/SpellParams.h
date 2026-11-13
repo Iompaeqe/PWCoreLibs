@@ -63,6 +63,10 @@ public:
 	int32 TargetEffectMask = (int32)ERelationMask::All;
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Replicated)
 	FGuid CastId;
+
+	// The ability's target resolver, if it has one. A spawned actor asks it who an impact affects, through IPWSpellTargetProvider.
+	UPROPERTY()
+	TObjectPtr<UObject> TargetResolver = nullptr;
 	
 	/**
 	 * Modules that need to add **primitive data** to SpellParams can use this container.  
