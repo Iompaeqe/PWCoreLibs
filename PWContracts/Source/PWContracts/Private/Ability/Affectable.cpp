@@ -3,5 +3,13 @@
 
 #include "Ability/Affectable.h"
 
+#include "Ability/EffectReceiver.h"
+#include "GameFramework/Actor.h"
 
-// Add default functionality here for any IEffectable functions that are not pure virtual.
+UObject* IAffectable::Find(AActor* Actor)
+{
+	if (!Actor) return nullptr;
+
+	UObject* Receiver = Actor->Implements<UEffectReceiver>() ? IEffectReceiver::Execute_GetEffectReceiver(Actor) : Actor;
+	return Receiver && Receiver->Implements<UAffectable>() ? Receiver : nullptr;
+}

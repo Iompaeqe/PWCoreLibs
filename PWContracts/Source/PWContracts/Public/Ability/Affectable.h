@@ -17,6 +17,9 @@ class PWCONTRACTS_API IAffectable
 	GENERATED_BODY()
 
 public:
+	// The object that takes effects for an actor, following its IEffectReceiver if it has one; null for scenery such as a wall.
+	static UObject* Find(AActor* Actor);
+
 	UFUNCTION(BlueprintNativeEvent, Category="Hit")
 	bool ApplyEffects(class USpellParams* SpellParams);
 
